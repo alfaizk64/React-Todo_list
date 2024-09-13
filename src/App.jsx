@@ -1,0 +1,93 @@
+
+import React, { useState, useEffect } from 'react';
+import TodoForm from './components/TodoForm';
+import TodoList from './components/TodoList';
+
+
+function App() {
+  const [tasks, setTasks] = useState(() => {
+    return JSON.parse(localStorage.getItem('tasks')) || [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }, [tasks]);
+
+  const addTask = (title, disc,date, time) => {
+    const newTask = {
+      id: Date.now(),
+      title,
+      disc,
+      date,
+      time,
+      completed: false,
+      timestamp: new Date().toLocaleString('en-GB', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+     }),
+      editing: false,
+      status:'pending'
+     };
+    setTasks([...tasks, newTask]);
+  };
+   
+ 
+  const toggleComplete = (taskId) => {
+    setTasks(
+      tasks.map(task =>
+        task.id === taskId ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  const deleteTask = (taskId) => {
+    setTasks(tasks.filter(task => task.id !== taskId));
+  };
+
+  const startEditing = (taskId) => {
+    setTasks(
+      tasks.map(task =>
+        task.id === taskId ? { ...task, editing: true } : task
+      )
+    );
+  };
+
+  const updateTask = (taskId, title, disc, date, time) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === taskId
+          ? { ...task, editing: false, title, disc, date, time }
+          : task
+      )
+    );
+  };
+  const updateTaskStatus = (taskId, newStatus) => {
+    setTasks(
+      tasks.map(task =>
+        task.id === taskId ? { ...task, status: newStatus } : task
+      )
+    );
+  };
+
+  return (
+    <div className="App">
+    <h1 style={{textAlign:"center",marginBottom:"12px"}}>TodoList</h1>
+      <TodoForm addTask={addTask} />
+      <TodoList
+        tasks={tasks}
+        toggleComplete={toggleComplete}
+        deleteTask={deleteTask}
+        startEditing={startEditing}
+        updateTask={updateTask}
+        updateTaskStatus={updateTaskStatus}
+      />
+    </div>
+  );
+}
+
+export default App;

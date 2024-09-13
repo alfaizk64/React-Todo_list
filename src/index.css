@@ -1,0 +1,161 @@
+/* index.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
+}
+
+.App {
+  background-color: rgba(174, 231, 179, 0.733);
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  border-radius: .75rem;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+/* AddTask.css */
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="date"]
+ {
+  flex-grow: 1;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* TaskList.css */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 5px;
+}
+
+li.completed,
+li.overdue {
+  text-decoration: line-through;
+}
+
+li.overdue {
+  color: red;
+}
+
+
+.status-tabs {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tab {
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
+  border: 1px solid #ccc;
+}
+
+.tab:not(.active) {
+  opacity: 0.4;
+  
+}
+
+.pending-tab {
+  background-color: #ff9800;
+  color: white;
+  border-color: #ffa07a;
+}
+
+.in-progress-tab {
+  background-color: #2196f3;
+  color: white;
+  border-color: #1a237e;  
+}
+
+.completed-tab {
+
+  background-color: #4caf50;
+  color: white;
+  border-color: #3e8e41;
+}
+
+.pending-tab.active{
+  background-color: #ff9800;
+}
+.in-progress-tab.active{
+  background-color: #2196f3;
+}
+.completed-tab.active {
+  background-color: #3e8e41;
+}
+.action-icons{
+  display: flex;
+  justify-content: end;
+}
+
+
+@media only screen and (max-width: 1080px) {
+  .formDiv{
+    flex-direction: column;
+  }
+  .inputWrapper{
+    width: 100%;
+  }
+  .wrapper_ul{
+    padding: 0;
+  }
+
+}
+@media screen and (max-width: 428px){
+  .status-tabs{
+    gap: 4px;
+  }
+  .tab{
+    padding: 2px 6px;
+    font-size: 10px
+  }
+  .fa_icons{
+  width: 16px;
+  }
+}
+@media screen and (max-width: 620px){
+.date_wrapper{
+  flex-direction: column;
+  justify-content: start !important;
+  align-items: start !important;
+}
+}
