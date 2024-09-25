@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { themeContext } from "../App";
 
 function TodoForm({ addTask }) {
   const [errors, setErrors] = useState({
@@ -73,6 +74,7 @@ function TodoForm({ addTask }) {
     const regex = /^([01]?[0-9]|2[0-3]):[0-5][0-9]\s?(AM|PM)?$/;
     return regex.test(timeString);
   };
+   const{theme}=useContext(themeContext)
 
   return (
     <form
@@ -88,7 +90,7 @@ function TodoForm({ addTask }) {
         className="inputWrapper"
         style={{ display: "flex", flexDirection: "column" }}
       >
-        <label style={{ fontSize: "18px" }}>Add Task</label>
+        <label style={{ fontSize: "18px",color:theme==='light'?'black':'white' }}>Add Task</label>
         <input type="text" name="title" placeholder="Add Task" />
         {errors.title && <span style={{ color: "red" }}>{errors.title}</span>}
       </div>
@@ -96,7 +98,7 @@ function TodoForm({ addTask }) {
         className="inputWrapper"
         style={{ display: "flex", flexDirection: "column" }}
       >
-        <label style={{ fontSize: "18px" }}>Add Description</label>
+        <label style={{ fontSize: "18px",color:theme==='light'?'black':'white' }}>Add Description</label>
         <input type="text" name="disc" placeholder="Add Description" />
         {errors.disc && <span style={{ color: "red" }}>{errors.disc}</span>}
       </div>
@@ -104,7 +106,7 @@ function TodoForm({ addTask }) {
         className="inputWrapper"
         style={{ display: "flex", flexDirection: "column" }}
       >
-        <label style={{ fontSize: "18px" }}>Date To complete Task</label>
+        <label style={{ fontSize: "18px",color:theme==='light'?'black':'white' }}>Date To complete Task</label>
         <input
           name="date"
           type="date"
@@ -116,7 +118,7 @@ function TodoForm({ addTask }) {
         className="inputWrapper"
         style={{ display: "flex", flexDirection: "column" }}
       >
-        <label style={{ fontSize: "18px" }}>Time to Complete</label>
+        <label style={{ fontSize: "18px",color:theme==='light'?'black':'white' }}>Time to Complete</label>
         <CustomTimePicker name="time" />
         {errors.time && <span style={{ color: "red" }}>{errors.time}</span>}
       </div>
