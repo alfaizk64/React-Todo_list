@@ -9,8 +9,12 @@ function App() {
   const [tasks, setTasks] = useState(() => {
     return JSON.parse(localStorage.getItem("tasks")) || [];
   });
-  const [theme, setTheme] = useState("dark");
-
+  const [theme, setTheme] = useState(()=>{
+    return localStorage.getItem('theme')|| "dark"
+  });
+  useEffect(()=>{
+    localStorage.setItem('theme',theme)
+  },[theme])
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }, [tasks]);
